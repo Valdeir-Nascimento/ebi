@@ -40,7 +40,6 @@ public class Usuario implements Serializable {
     @Column(name = "email", nullable = false)
     private String email;
 
-
     @NotNull
     @Size(min = 1, max = 11)
     @Column(name = "celular", nullable = false)

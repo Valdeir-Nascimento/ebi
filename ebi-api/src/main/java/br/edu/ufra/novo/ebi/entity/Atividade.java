@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Setter
@@ -42,14 +42,12 @@ public class Atividade implements Serializable {
     private String resumo;
 
     @NotNull
-    @Column(name = "inicio", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date inicio;
+    @Column(name = "inicio", columnDefinition = "DATETIME", nullable = false)
+    private Instant inicio;
 
     @NotNull
-    @Column(name = "fim", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fim;
+    @Column(name = "fim", columnDefinition = "DATETIME", nullable = false)
+    private Instant fim;
 
     @JoinColumn(name = "tipo_atividade", referencedColumnName = "id")
     @ManyToOne(optional = false)

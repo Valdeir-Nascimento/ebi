@@ -9,7 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 
 
 @Setter
@@ -30,8 +30,7 @@ public class Versao implements Serializable {
     private Integer id;
 
     @NotNull
-    @Column(name = "ultima", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date ultima;
+    @Column(name = "ultima", columnDefinition = "DATETIME", nullable = false)
+    private Instant ultima;
 
 }
