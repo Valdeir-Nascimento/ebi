@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IAtividadeRepository extends JpaRepository<Atividade, Integer> {
 
-    @Query("SELECT a FROM Atividade a WHERE a.tipoAtividade.id = :tipo")
-    List<Atividade> filtrarAtividadesPorTipo(TipoAtividade tipo);
+    @Query("SELECT a FROM Atividade a WHERE a.tipoAtividade.id = :idTipoAtividade")
+    List<Atividade> filtrarAtividadesPorTipo(Integer idTipoAtividade);
 
 }
