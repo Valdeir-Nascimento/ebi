@@ -1,12 +1,11 @@
 package br.edu.ufra.novo.ebi.service;
 
-import br.edu.ufra.novo.ebi.entity.Atividade;
-import br.edu.ufra.novo.ebi.entity.TipoAtividade;
+import br.edu.ufra.novo.ebi.dto.response.AtividadeResponse;
 
 import java.util.List;
 
 public interface IAtividadePorTipoService {
 
-    List<Atividade> filtrarAtividadesPorTipo(TipoAtividade tipo);
+    List<AtividadeResponse> filtrarAtividadesPorTipo(Integer idTipoAtividade);
 
 }
