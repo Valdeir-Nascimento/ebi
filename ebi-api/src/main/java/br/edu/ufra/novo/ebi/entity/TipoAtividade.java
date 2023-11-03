@@ -38,9 +38,14 @@ public class TipoAtividade implements Serializable {
 
     @NotNull
     @Column(name = "listar_palestrantes", nullable = false)
-    private boolean listarPalestrantes;
+    private Boolean listarPalestrantes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoAtividade")
     private List<Atividade> atividadeList;
+
+    public TipoAtividade(String nome, Boolean listarPalestrantes) {
+        this.nome = nome;
+        this.listarPalestrantes = listarPalestrantes;
+    }
 
 }

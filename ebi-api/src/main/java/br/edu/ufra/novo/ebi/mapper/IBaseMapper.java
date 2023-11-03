@@ -10,8 +10,8 @@ import java.util.List;
  */
 public interface IBaseMapper<T, R, S> {
 
-    T toEntity(R request, Class<T> entityClass);
-    S toResponse(T entity, Class<S> responseClass);
-    List<S> toList(List<T> entities, Class<S> responseClass);
+    T toEntity(R request);
+    S toResponse(T entity);
+    List<S> toList(List<T> entities);
 
 }

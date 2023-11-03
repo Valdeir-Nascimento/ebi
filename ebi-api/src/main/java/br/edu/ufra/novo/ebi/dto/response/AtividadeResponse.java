@@ -1,28 +1,22 @@
 package br.edu.ufra.novo.ebi.dto.response;
 
-import br.edu.ufra.novo.ebi.dto.request.SalaRequest;
-import br.edu.ufra.novo.ebi.dto.request.TipoAtividadeRequest;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 @Getter
 @Setter
 @NoArgsConstructor
-public class AtividadeResponse implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class AtividadeResponse {
 
     private Integer id;
     private String nome;
     private String resumo;
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private String inicio;
     private String fim;
-    private TipoAtividadeRequest tipo;
-    private SalaRequest sala;
+    private TipoAtividadeResponse tipoAtividade;
+    private SalaResponse sala;
 
 }
