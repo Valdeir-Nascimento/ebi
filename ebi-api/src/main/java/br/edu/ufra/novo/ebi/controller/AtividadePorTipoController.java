@@ -19,7 +19,7 @@ public class AtividadePorTipoController {
     private final IAtividadePorTipoService atividadePorTipoService;
 
     @GetMapping("/{idTipoAtividade}")
-    public ResponseEntity<List<AtividadeResponse>> obter(@PathVariable Integer idTipoAtividade) {
+    public ResponseEntity<List<AtividadeResponse>> filtrarAtividadesPorTipo(@PathVariable Integer idTipoAtividade) {
         List<AtividadeResponse> atividades = atividadePorTipoService.filtrarAtividadesPorTipo(idTipoAtividade);
         return ResponseEntity.ok().body(atividades);
     }
