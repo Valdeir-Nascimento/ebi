@@ -1,4 +1,4 @@
-package br.edu.ufra.novo.ebi.service.validator;
+package br.edu.ufra.novo.ebi.service.base.validator;
 
 public interface IValidarExistenciaService<T, ID> {
 
