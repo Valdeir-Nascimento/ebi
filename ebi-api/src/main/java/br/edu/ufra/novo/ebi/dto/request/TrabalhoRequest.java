@@ -30,6 +30,6 @@ public class TrabalhoRequest implements Serializable {
     private String palavrasChave;
 
     @Valid
-    private AtividadeResponse atividade;
+    private AtividadeRequest atividade;
 
 }
