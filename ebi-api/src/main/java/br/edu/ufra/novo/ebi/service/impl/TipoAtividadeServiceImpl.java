@@ -21,6 +21,7 @@ public class TipoAtividadeServiceImpl implements ITipoAtividadeService {
     public TipoAtividadeResponse buscarPorId(Integer idTipoAtividade) {
         TipoAtividade tipoAtividade = tipoAtividadeRepository.findById(idTipoAtividade)
             .orElseThrow(() -> new TipoAtividadeNaoEncontradaException(idTipoAtividade));
-        return mapper.toResponse(tipoAtividade, TipoAtividadeResponse.class);
+        return mapper.toResponse(tipoAtividade);
+
     }
 }
