@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IFinanciadorRepository extends JpaRepository<Financiador, Integer> {
 
-    @Query("SELECT f FROM Financiador f INNER JOIN f.trabalhoList t WHERE t = :trabalho ORDER BY t.titulo")
-    List<Financiador> obter(Trabalho trabalho);
+    @Query("SELECT f FROM Financiador f INNER JOIN f.trabalhoList t WHERE t.id = :idTrabalho ORDER BY t.titulo")
+    List<Financiador> obter(Integer idTrabalho);
 
 }
