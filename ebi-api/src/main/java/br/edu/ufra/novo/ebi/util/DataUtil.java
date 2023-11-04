@@ -6,10 +6,10 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class DateFormatterUtil {
+public class DataUtil {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-    private DateFormatterUtil() {
+    private DataUtil() {
     }
 
     public static String formatInstant(Instant instant) {

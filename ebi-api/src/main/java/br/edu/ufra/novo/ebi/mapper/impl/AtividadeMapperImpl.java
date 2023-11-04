@@ -10,7 +10,7 @@ import br.edu.ufra.novo.ebi.entity.Atividade;
 import br.edu.ufra.novo.ebi.entity.Sala;
 import br.edu.ufra.novo.ebi.entity.TipoAtividade;
 import br.edu.ufra.novo.ebi.mapper.IBaseMapper;
-import br.edu.ufra.novo.ebi.util.DateFormatterUtil;
+import br.edu.ufra.novo.ebi.util.DataUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -29,8 +29,8 @@ public class AtividadeMapperImpl implements IBaseMapper<Atividade, AtividadeRequ
         Atividade atividade = new Atividade();
         atividade.setNome(request.getNome());
         atividade.setResumo(request.getResumo());
-        atividade.setInicio(DateFormatterUtil.convertStringToInstant(request.getInicio()));
-        atividade.setFim(DateFormatterUtil.convertStringToInstant(request.getFim()));
+        atividade.setInicio(DataUtil.convertStringToInstant(request.getInicio()));
+        atividade.setFim(DataUtil.convertStringToInstant(request.getFim()));
         atividade.setTipoAtividade(tipoAtividadeMapper.toEntity(request.getTipo()));
         atividade.setSala(salaMapper.toEntity(request.getSala()));
         return atividade;
@@ -42,8 +42,8 @@ public class AtividadeMapperImpl implements IBaseMapper<Atividade, AtividadeRequ
         response.setId(entity.getId());
         response.setNome(entity.getNome());
         response.setResumo(entity.getResumo());
-        response.setInicio(DateFormatterUtil.formatInstant(entity.getInicio()));
-        response.setFim(DateFormatterUtil.formatInstant(entity.getFim()));
+        response.setInicio(DataUtil.formatInstant(entity.getInicio()));
+        response.setFim(DataUtil.formatInstant(entity.getFim()));
         response.setTipoAtividade(tipoAtividadeMapper.toResponse(entity.getTipoAtividade()));
         response.setSala(salaMapper.toResponse(entity.getSala()));
         return response;

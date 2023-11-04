@@ -44,14 +44,14 @@ public class Trabalho implements Serializable {
     @Column(name = "palavrasChave")
     private String palavrasChave;
 
+    @JoinColumn(name = "atividade", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Atividade atividade;
+
     @ManyToMany(mappedBy = "trabalhoList")
     private List<Financiador> financiadorList;
 
     @ManyToMany(mappedBy = "trabalhoList")
     private List<Autor> autorList;
-
-    @JoinColumn(name = "atividade", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Atividade atividade;
 
 }
