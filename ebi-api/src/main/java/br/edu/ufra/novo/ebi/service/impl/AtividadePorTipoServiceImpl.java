@@ -27,5 +27,4 @@ public class AtividadePorTipoServiceImpl implements IAtividadePorTipoService {
         return mapper.toList(atividades);
     }
 
-
 }

@@ -26,4 +26,9 @@ public class FinanciadorMapperImpl implements IBaseMapper<Financiador, Financiad
     public List<FinanciadorResponse> toList(List<Financiador> entities) {
         return entities.stream().map(this::toResponse).collect(Collectors.toList());
     }
+
+    @Override
+    public Financiador responseToEntity(FinanciadorResponse response) {
+        return null;
+    }
 }

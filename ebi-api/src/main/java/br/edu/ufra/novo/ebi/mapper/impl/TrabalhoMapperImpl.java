@@ -44,4 +44,9 @@ public class TrabalhoMapperImpl implements IBaseMapper<Trabalho, TrabalhoRequest
         return entities.stream().map(this::toResponse).collect(Collectors.toList());
     }
 
+    @Override
+    public Trabalho responseToEntity(TrabalhoResponse response) {
+        return null;
+    }
+
 }

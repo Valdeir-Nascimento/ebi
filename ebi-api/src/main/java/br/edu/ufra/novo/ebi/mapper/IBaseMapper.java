@@ -13,5 +13,6 @@ public interface IBaseMapper<T, R, S> {
     T toEntity(R request);
     S toResponse(T entity);
     List<S> toList(List<T> entities);
+    T responseToEntity(S response);
 
 }

@@ -54,4 +54,9 @@ public class AtividadeMapperImpl implements IBaseMapper<Atividade, AtividadeRequ
         return entities.stream().map(this::toResponse).collect(Collectors.toList());
     }
 
+    @Override
+    public Atividade responseToEntity(AtividadeResponse response) {
+        return null;
+    }
+
 }

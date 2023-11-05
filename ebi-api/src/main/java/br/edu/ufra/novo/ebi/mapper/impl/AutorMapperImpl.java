@@ -1,6 +1,5 @@
 package br.edu.ufra.novo.ebi.mapper.impl;
 
-import br.edu.ufra.novo.ebi.dto.request.AtividadeRequest;
 import br.edu.ufra.novo.ebi.dto.request.AutorRequest;
 import br.edu.ufra.novo.ebi.dto.response.AutorResponse;
 import br.edu.ufra.novo.ebi.entity.Autor;
@@ -26,6 +25,11 @@ public class AutorMapperImpl implements IBaseMapper<Autor, AutorRequest, AutorRe
     @Override
     public List<AutorResponse> toList(List<Autor> entities) {
         return entities.stream().map(this::toResponse).collect(Collectors.toList());
+    }
+
+    @Override
+    public Autor responseToEntity(AutorResponse response) {
+        return null;
     }
 
 }

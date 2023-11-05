@@ -27,4 +27,9 @@ public class SalaMapperImpl implements IBaseMapper<Sala, SalaRequest, SalaRespon
         return entities.stream().map(this::toResponse).collect(Collectors.toList());
     }
 
+    @Override
+    public Sala responseToEntity(SalaResponse response) {
+        return null;
+    }
+
 }

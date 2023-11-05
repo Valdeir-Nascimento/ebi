@@ -4,11 +4,11 @@ import br.edu.ufra.novo.ebi.dto.response.UltimaVersaoResponse;
 import br.edu.ufra.novo.ebi.service.IUltimaVersaoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Service
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/versoes")
 public class VersaoController {
