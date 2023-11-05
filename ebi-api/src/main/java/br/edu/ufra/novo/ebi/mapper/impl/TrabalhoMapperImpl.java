@@ -46,7 +46,12 @@ public class TrabalhoMapperImpl implements IBaseMapper<Trabalho, TrabalhoRequest
 
     @Override
     public Trabalho responseToEntity(TrabalhoResponse response) {
-        return null;
+        Trabalho trabalho = new Trabalho();
+        trabalho.setId(response.getId());
+        trabalho.setTitulo(response.getTitulo());
+        trabalho.setPalavrasChave(response.getPalavrasChave());
+        trabalho.setResumo(response.getResumo());
+        return trabalho;
     }
 
 }

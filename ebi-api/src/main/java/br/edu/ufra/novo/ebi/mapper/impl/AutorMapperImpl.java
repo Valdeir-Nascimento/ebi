@@ -29,7 +29,7 @@ public class AutorMapperImpl implements IBaseMapper<Autor, AutorRequest, AutorRe
 
     @Override
     public Autor responseToEntity(AutorResponse response) {
-        return null;
+        return new Autor(response.getId(), response.getNome(), response.getAbreviado(), response.getInstituicao());
     }
 
 }

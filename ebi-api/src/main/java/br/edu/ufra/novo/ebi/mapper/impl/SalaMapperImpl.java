@@ -29,7 +29,7 @@ public class SalaMapperImpl implements IBaseMapper<Sala, SalaRequest, SalaRespon
 
     @Override
     public Sala responseToEntity(SalaResponse response) {
-        return null;
+        return new Sala(response.getId(), response.getNome(), response.getImagem());
     }
 
 }

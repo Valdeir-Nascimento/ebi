@@ -29,6 +29,6 @@ public class FinanciadorMapperImpl implements IBaseMapper<Financiador, Financiad
 
     @Override
     public Financiador responseToEntity(FinanciadorResponse response) {
-        return null;
+        return new Financiador(response.getId(), response.getNome());
     }
 }

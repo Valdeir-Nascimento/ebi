@@ -42,6 +42,12 @@ public class Sala implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sala")
     private List<Atividade> atividadeList;
 
+    public Sala(Integer id, String nome, String imagem) {
+        this.id = id;
+        this.nome = nome;
+        this.imagem = imagem;
+    }
+
     public Sala(String nome, String imagem) {
         this.nome = nome;
         this.imagem = imagem;

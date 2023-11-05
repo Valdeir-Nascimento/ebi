@@ -41,6 +41,11 @@ public class Financiador implements Serializable {
     @ManyToMany
     private List<Trabalho> trabalhoList;
 
+    public Financiador(Integer id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
     public Financiador(String nome) {
         this.nome = nome;
     }

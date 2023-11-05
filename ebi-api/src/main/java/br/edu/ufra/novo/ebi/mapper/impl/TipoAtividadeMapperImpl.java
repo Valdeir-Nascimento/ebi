@@ -29,11 +29,7 @@ public class TipoAtividadeMapperImpl implements IBaseMapper<TipoAtividade, TipoA
 
     @Override
     public TipoAtividade responseToEntity(TipoAtividadeResponse response) {
-        TipoAtividade tipo = new TipoAtividade();
-        tipo.setId(response.getId());
-        tipo.setNome(response.getNome());
-        tipo.setListarPalestrantes(response.getListarPalestrantes());
-        return tipo;
+        return new TipoAtividade(response.getId(), response.getNome(), response.getListarPalestrantes());
     }
 
 }

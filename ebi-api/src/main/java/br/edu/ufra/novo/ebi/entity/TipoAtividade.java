@@ -43,6 +43,12 @@ public class TipoAtividade implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoAtividade")
     private List<Atividade> atividadeList;
 
+    public TipoAtividade(Integer id, String nome, Boolean listarPalestrantes) {
+        this.id = id;
+        this.nome = nome;
+        this.listarPalestrantes = listarPalestrantes;
+    }
+
     public TipoAtividade(String nome, Boolean listarPalestrantes) {
         this.nome = nome;
         this.listarPalestrantes = listarPalestrantes;

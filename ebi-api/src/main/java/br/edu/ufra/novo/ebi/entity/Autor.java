@@ -55,6 +55,13 @@ public class Autor implements Serializable {
     @ManyToMany
     private List<Trabalho> trabalhoList;
 
+    public Autor(Integer id, String nome, String abreviado, String instituicao) {
+        this.id = id;
+        this.nome = nome;
+        this.abreviado = abreviado;
+        this.instituicao = instituicao;
+    }
+
     public Autor(String nome, String abreviado, String instituicao) {
         this.nome = nome;
         this.abreviado = abreviado;

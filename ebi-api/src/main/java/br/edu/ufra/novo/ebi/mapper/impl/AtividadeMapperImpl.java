@@ -56,7 +56,15 @@ public class AtividadeMapperImpl implements IBaseMapper<Atividade, AtividadeRequ
 
     @Override
     public Atividade responseToEntity(AtividadeResponse response) {
-        return null;
+        Atividade atividade = new Atividade();
+        atividade.setId(response.getId());
+        atividade.setNome(response.getNome());
+        atividade.setResumo(response.getResumo());
+        atividade.setInicio(DataUtil.convertStringToInstant(response.getInicio()));
+        atividade.setFim(DataUtil.convertStringToInstant(response.getFim()));
+        atividade.setTipoAtividade(tipoAtividadeMapper.responseToEntity(response.getTipoAtividade()));
+        atividade.setSala(salaMapper.responseToEntity(response.getSala()));
+        return atividade;
     }
 
 }
