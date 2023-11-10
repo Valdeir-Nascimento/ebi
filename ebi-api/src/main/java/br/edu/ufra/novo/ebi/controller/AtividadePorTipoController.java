@@ -13,12 +13,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/api/v1/atividades")
+@RequestMapping(path = "/api/v1/tipo-atividade")
 public class AtividadePorTipoController {
 
     private final IAtividadePorTipoService atividadePorTipoService;
 
-    @GetMapping("/{idTipoAtividade}")
+    @GetMapping("/{idTipoAtividade}/atividades")
     public ResponseEntity<List<AtividadeResponse>> filtrarAtividadesPorTipo(@PathVariable Integer idTipoAtividade) {
         List<AtividadeResponse> atividades = atividadePorTipoService.filtrarAtividadesPorTipo(idTipoAtividade);
         return ResponseEntity.ok().body(atividades);

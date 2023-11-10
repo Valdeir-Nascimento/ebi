@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface IVersaoRepository extends JpaRepository<Versao, Integer> {
 
-    @Query("SELECT MAX(v.id) from Versao v")
+    @Query("SELECT MAX(v.id) FROM Versao v")
     Integer ultimaVersao();
 
 }
