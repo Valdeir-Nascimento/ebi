@@ -1,5 +1,6 @@
 package br.edu.ufra.novo.ebi.mapper.impl;
 
+import br.edu.ufra.novo.ebi.builder.FinanciadorBuilder;
 import br.edu.ufra.novo.ebi.dto.request.FinanciadorRequest;
 import br.edu.ufra.novo.ebi.dto.response.FinanciadorResponse;
 import br.edu.ufra.novo.ebi.entity.Financiador;
@@ -14,12 +15,17 @@ public class FinanciadorMapperImpl implements IBaseMapper<Financiador, Financiad
 
     @Override
     public Financiador toEntity(FinanciadorRequest request) {
-        return new Financiador(request.getNome());
+        return FinanciadorBuilder.builder()
+                .nome(request.getNome())
+                .build();
     }
 
     @Override
     public FinanciadorResponse toResponse(Financiador entity) {
-        return new FinanciadorResponse(entity.getId(), entity.getNome());
+        return FinanciadorResponse.builder()
+                .id(entity.getId())
+                .nome(entity.getNome())
+                .build();
     }
 
     @Override
@@ -29,6 +35,9 @@ public class FinanciadorMapperImpl implements IBaseMapper<Financiador, Financiad
 
     @Override
     public Financiador responseToEntity(FinanciadorResponse response) {
-        return new Financiador(response.getId(), response.getNome());
+        return FinanciadorBuilder.builder()
+                .id(response.getId())
+                .nome(response.getNome())
+                .build();
     }
 }

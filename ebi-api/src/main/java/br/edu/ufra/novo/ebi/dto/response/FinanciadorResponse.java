@@ -1,10 +1,11 @@
 package br.edu.ufra.novo.ebi.dto.response;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
+@Builder
 public class FinanciadorResponse {
 
     private Integer id;

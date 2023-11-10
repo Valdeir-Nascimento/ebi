@@ -1,5 +1,6 @@
 package br.edu.ufra.novo.ebi.dto.request;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,7 @@ import java.io.Serializable;
 
 @Setter
 @Getter
-@NoArgsConstructor
+@Builder
 public class TipoAtividadeRequest implements Serializable {
 
     @NotBlank

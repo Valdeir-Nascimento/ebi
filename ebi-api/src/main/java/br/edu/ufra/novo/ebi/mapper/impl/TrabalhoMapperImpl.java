@@ -1,5 +1,6 @@
 package br.edu.ufra.novo.ebi.mapper.impl;
 
+import br.edu.ufra.novo.ebi.builder.TrabalhoBuilder;
 import br.edu.ufra.novo.ebi.dto.request.AtividadeRequest;
 import br.edu.ufra.novo.ebi.dto.request.TrabalhoRequest;
 import br.edu.ufra.novo.ebi.dto.response.AtividadeResponse;
@@ -7,6 +8,7 @@ import br.edu.ufra.novo.ebi.dto.response.TrabalhoResponse;
 import br.edu.ufra.novo.ebi.entity.Atividade;
 import br.edu.ufra.novo.ebi.entity.Trabalho;
 import br.edu.ufra.novo.ebi.mapper.IBaseMapper;
+import br.edu.ufra.novo.ebi.util.DataUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -21,22 +23,31 @@ public class TrabalhoMapperImpl implements IBaseMapper<Trabalho, TrabalhoRequest
 
     @Override
     public Trabalho toEntity(TrabalhoRequest request) {
-        Trabalho trabalho = new Trabalho();
-        trabalho.setTitulo(request.getTitulo());
-        trabalho.setResumo(request.getResumo());
-        trabalho.setPalavrasChave(request.getPalavrasChave());
-        trabalho.setAtividade(atividadeMapper.toEntity(request.getAtividade()));
-        return trabalho;
+        return TrabalhoBuilder.builder()
+                .titulo(request.getTitulo())
+                .resumo(request.getResumo())
+                .palavrasChave(request.getPalavrasChave())
+                .atividade(atividadeMapper.toEntity(request.getAtividade()))
+                .build();
     }
 
     @Override
     public TrabalhoResponse toResponse(Trabalho entity) {
-        TrabalhoResponse response = new TrabalhoResponse();
-        response.setId(entity.getId());
-        response.setTitulo(entity.getTitulo());
-        response.setPalavrasChave(entity.getPalavrasChave());
-        response.setResumo(entity.getResumo());
-        return response;
+        AtividadeResponse atividade = AtividadeResponse.builder()
+                .id(entity.getAtividade().getId())
+                .nome(entity.getAtividade().getNome())
+                .inicio(DataUtil.formatInstant(entity.getAtividade().getInicio()))
+                .fim(DataUtil.formatInstant(entity.getAtividade().getFim()))
+                .resumo(entity.getAtividade().getResumo())
+                .build();
+
+        return TrabalhoResponse.builder()
+                .id(entity.getId())
+                .titulo(entity.getTitulo())
+                .resumo(entity.getResumo())
+                .palavrasChave(entity.getPalavrasChave())
+                .atividade(atividade)
+                .build();
     }
 
     @Override
@@ -46,12 +57,12 @@ public class TrabalhoMapperImpl implements IBaseMapper<Trabalho, TrabalhoRequest
 
     @Override
     public Trabalho responseToEntity(TrabalhoResponse response) {
-        Trabalho trabalho = new Trabalho();
-        trabalho.setId(response.getId());
-        trabalho.setTitulo(response.getTitulo());
-        trabalho.setPalavrasChave(response.getPalavrasChave());
-        trabalho.setResumo(response.getResumo());
-        return trabalho;
+        return TrabalhoBuilder.builder()
+                .id(response.getId())
+                .titulo(response.getTitulo())
+                .palavrasChave(response.getPalavrasChave())
+                .resumo(response.getResumo())
+                .build();
     }
 
 }

@@ -1,7 +1,8 @@
 package br.edu.ufra.novo.ebi.dto.request;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -9,7 +10,8 @@ import java.io.Serial;
 import java.io.Serializable;
 
 @Getter
-@AllArgsConstructor
+@Setter
+@Builder
 public class FinanciadorRequest implements Serializable {
 
     @Serial

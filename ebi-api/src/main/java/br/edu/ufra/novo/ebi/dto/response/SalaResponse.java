@@ -1,11 +1,11 @@
 package br.edu.ufra.novo.ebi.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
+import lombok.*;
 
 
 @Getter
+@Setter
+@Builder
 @AllArgsConstructor
 public class SalaResponse  {
 

@@ -1,5 +1,6 @@
 package br.edu.ufra.novo.ebi.mapper.impl;
 
+import br.edu.ufra.novo.ebi.builder.AtividadeBuilder;
 import br.edu.ufra.novo.ebi.dto.request.AtividadeRequest;
 import br.edu.ufra.novo.ebi.dto.request.SalaRequest;
 import br.edu.ufra.novo.ebi.dto.request.TipoAtividadeRequest;
@@ -26,27 +27,27 @@ public class AtividadeMapperImpl implements IBaseMapper<Atividade, AtividadeRequ
 
     @Override
     public Atividade toEntity(AtividadeRequest request) {
-        Atividade atividade = new Atividade();
-        atividade.setNome(request.getNome());
-        atividade.setResumo(request.getResumo());
-        atividade.setInicio(DataUtil.convertStringToInstant(request.getInicio()));
-        atividade.setFim(DataUtil.convertStringToInstant(request.getFim()));
-        atividade.setTipoAtividade(tipoAtividadeMapper.toEntity(request.getTipo()));
-        atividade.setSala(salaMapper.toEntity(request.getSala()));
-        return atividade;
+        return AtividadeBuilder.builder()
+                .nome(request.getNome())
+                .resumo(request.getResumo())
+                .inicio(DataUtil.convertStringToInstant(request.getInicio()))
+                .fim(DataUtil.convertStringToInstant(request.getFim()))
+                .tipoAtividade(tipoAtividadeMapper.toEntity(request.getTipo()))
+                .sala(salaMapper.toEntity(request.getSala()))
+                .build();
     }
 
     @Override
     public AtividadeResponse toResponse(Atividade entity) {
-        AtividadeResponse response = new AtividadeResponse();
-        response.setId(entity.getId());
-        response.setNome(entity.getNome());
-        response.setResumo(entity.getResumo());
-        response.setInicio(DataUtil.formatInstant(entity.getInicio()));
-        response.setFim(DataUtil.formatInstant(entity.getFim()));
-        response.setTipoAtividade(tipoAtividadeMapper.toResponse(entity.getTipoAtividade()));
-        response.setSala(salaMapper.toResponse(entity.getSala()));
-        return response;
+        return AtividadeResponse.builder()
+                .id(entity.getId())
+                .nome(entity.getNome())
+                .resumo(entity.getResumo())
+                .inicio(DataUtil.formatInstant(entity.getInicio()))
+                .fim(DataUtil.formatInstant(entity.getFim()))
+                .tipoAtividade(tipoAtividadeMapper.toResponse(entity.getTipoAtividade()))
+                .sala(salaMapper.toResponse(entity.getSala()))
+                .build();
     }
 
     @Override
@@ -56,15 +57,15 @@ public class AtividadeMapperImpl implements IBaseMapper<Atividade, AtividadeRequ
 
     @Override
     public Atividade responseToEntity(AtividadeResponse response) {
-        Atividade atividade = new Atividade();
-        atividade.setId(response.getId());
-        atividade.setNome(response.getNome());
-        atividade.setResumo(response.getResumo());
-        atividade.setInicio(DataUtil.convertStringToInstant(response.getInicio()));
-        atividade.setFim(DataUtil.convertStringToInstant(response.getFim()));
-        atividade.setTipoAtividade(tipoAtividadeMapper.responseToEntity(response.getTipoAtividade()));
-        atividade.setSala(salaMapper.responseToEntity(response.getSala()));
-        return atividade;
+        return AtividadeBuilder.builder()
+                .id(response.getId())
+                .nome(response.getNome())
+                .resumo(response.getResumo())
+                .inicio(DataUtil.convertStringToInstant(response.getInicio()))
+                .fim(DataUtil.convertStringToInstant(response.getFim()))
+                .tipoAtividade(tipoAtividadeMapper.responseToEntity(response.getTipoAtividade()))
+                .sala(salaMapper.responseToEntity(response.getSala()))
+                .build();
     }
 
 }

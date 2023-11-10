@@ -1,5 +1,6 @@
 package br.edu.ufra.novo.ebi.mapper.impl;
 
+import br.edu.ufra.novo.ebi.builder.TipoAtividadeBuilder;
 import br.edu.ufra.novo.ebi.dto.request.TipoAtividadeRequest;
 import br.edu.ufra.novo.ebi.dto.response.TipoAtividadeResponse;
 import br.edu.ufra.novo.ebi.entity.TipoAtividade;
@@ -14,12 +15,19 @@ public class TipoAtividadeMapperImpl implements IBaseMapper<TipoAtividade, TipoA
 
     @Override
     public TipoAtividade toEntity(TipoAtividadeRequest request) {
-        return new TipoAtividade(request.getNome(), request.getListarPalestrantes());
+        return TipoAtividadeBuilder.builder()
+                .nome(request.getNome())
+                .listarPalestrantes(request.getListarPalestrantes())
+                .build();
     }
 
     @Override
     public TipoAtividadeResponse toResponse(TipoAtividade entity) {
-        return new TipoAtividadeResponse(entity.getId(), entity.getNome(), entity.getListarPalestrantes());
+        return TipoAtividadeResponse.builder()
+                .id(entity.getId())
+                .nome(entity.getNome())
+                .listarPalestrantes(entity.getListarPalestrantes())
+                .build();
     }
 
     @Override
@@ -29,7 +37,11 @@ public class TipoAtividadeMapperImpl implements IBaseMapper<TipoAtividade, TipoA
 
     @Override
     public TipoAtividade responseToEntity(TipoAtividadeResponse response) {
-        return new TipoAtividade(response.getId(), response.getNome(), response.getListarPalestrantes());
+        return TipoAtividadeBuilder.builder()
+                .id(response.getId())
+                .nome(response.getNome())
+                .listarPalestrantes(response.getListarPalestrantes())
+                .build();
     }
 
 }

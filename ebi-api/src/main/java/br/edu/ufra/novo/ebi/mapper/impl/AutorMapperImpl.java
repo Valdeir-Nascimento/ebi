@@ -1,5 +1,6 @@
 package br.edu.ufra.novo.ebi.mapper.impl;
 
+import br.edu.ufra.novo.ebi.builder.AutorBuilder;
 import br.edu.ufra.novo.ebi.dto.request.AutorRequest;
 import br.edu.ufra.novo.ebi.dto.response.AutorResponse;
 import br.edu.ufra.novo.ebi.entity.Autor;
@@ -14,12 +15,21 @@ public class AutorMapperImpl implements IBaseMapper<Autor, AutorRequest, AutorRe
 
     @Override
     public Autor toEntity(AutorRequest request) {
-        return new Autor(request.getNome(), request.getAbreviado(), request.getInstituicao());
+        return AutorBuilder.builder()
+                .nome(request.getNome())
+                .abreviado(request.getAbreviado())
+                .instituicao(request.getInstituicao())
+                .build();
     }
 
     @Override
     public AutorResponse toResponse(Autor entity) {
-        return new AutorResponse(entity.getId(), entity.getNome(), entity.getAbreviado(), entity.getInstituicao());
+        return AutorResponse.builder()
+                .id(entity.getId())
+                .nome(entity.getNome())
+                .abreviado(entity.getAbreviado())
+                .instituicao(entity.getInstituicao())
+                .build();
     }
 
     @Override
@@ -29,7 +39,12 @@ public class AutorMapperImpl implements IBaseMapper<Autor, AutorRequest, AutorRe
 
     @Override
     public Autor responseToEntity(AutorResponse response) {
-        return new Autor(response.getId(), response.getNome(), response.getAbreviado(), response.getInstituicao());
+        return AutorBuilder.builder()
+                .id(response.getId())
+                .nome(response.getNome())
+                .abreviado(response.getAbreviado())
+                .instituicao(response.getInstituicao())
+                .build();
     }
 
 }

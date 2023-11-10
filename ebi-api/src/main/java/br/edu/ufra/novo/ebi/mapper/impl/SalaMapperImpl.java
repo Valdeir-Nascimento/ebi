@@ -1,5 +1,6 @@
 package br.edu.ufra.novo.ebi.mapper.impl;
 
+import br.edu.ufra.novo.ebi.builder.SalaBuilder;
 import br.edu.ufra.novo.ebi.dto.request.SalaRequest;
 import br.edu.ufra.novo.ebi.dto.response.SalaResponse;
 import br.edu.ufra.novo.ebi.entity.Sala;
@@ -14,12 +15,19 @@ public class SalaMapperImpl implements IBaseMapper<Sala, SalaRequest, SalaRespon
 
     @Override
     public Sala toEntity(SalaRequest request) {
-        return new Sala(request.getNome(), request.getImagem());
+        return SalaBuilder.builder()
+                .nome(request.getNome())
+                .imagem(request.getImagem())
+                .build();
     }
 
     @Override
     public SalaResponse toResponse(Sala entity) {
-        return new SalaResponse(entity.getId(), entity.getNome(), entity.getImagem());
+        return SalaResponse.builder()
+                .id(entity.getId())
+                .nome(entity.getNome())
+                .imagem(entity.getImagem())
+                .build();
     }
 
     @Override
@@ -29,7 +37,11 @@ public class SalaMapperImpl implements IBaseMapper<Sala, SalaRequest, SalaRespon
 
     @Override
     public Sala responseToEntity(SalaResponse response) {
-        return new Sala(response.getId(), response.getNome(), response.getImagem());
+        return SalaBuilder.builder()
+                .id(response.getId())
+                .nome(response.getNome())
+                .imagem(response.getImagem())
+                .build();
     }
 
 }
