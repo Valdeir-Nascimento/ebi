@@ -24,7 +24,7 @@ public class FinanciadorPorTrabalhoServiceImpl implements IFinanciadorPorTrabalh
     @Override
     public List<FinanciadorResponse> filtrarFinanciadoresPorTrabalho(Integer idTrabalho) {
         validarExistenciaService.validar(idTrabalho);
-        List<Financiador> financiadores = financiadorRepository.obter(idTrabalho);
+        List<Financiador> financiadores = financiadorRepository.filtrarFinanciadoresPorTrabalho(idTrabalho);
         return mapper.toList(financiadores);
     }
 }

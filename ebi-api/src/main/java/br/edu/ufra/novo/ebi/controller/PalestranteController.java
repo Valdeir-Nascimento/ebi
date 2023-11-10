@@ -19,7 +19,7 @@ public class PalestranteController {
 
     @GetMapping
     public ResponseEntity<List<AutorResponse>> filtrarPalestrantes() {
-        List<AutorResponse> palestrantes = palestranteService.obterPalestrantes();
+        List<AutorResponse> palestrantes = palestranteService.filtrarPalestrantes();
         return ResponseEntity.ok().body(palestrantes);
     }
 

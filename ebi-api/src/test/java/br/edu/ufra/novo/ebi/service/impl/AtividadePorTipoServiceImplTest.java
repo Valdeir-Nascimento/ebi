@@ -3,23 +3,22 @@ package br.edu.ufra.novo.ebi.service.impl;
 import br.edu.ufra.novo.ebi.dto.request.AtividadeRequest;
 import br.edu.ufra.novo.ebi.dto.response.AtividadeResponse;
 import br.edu.ufra.novo.ebi.entity.Atividade;
+import br.edu.ufra.novo.ebi.exception.EntidadeNaoEncontradaException;
+import br.edu.ufra.novo.ebi.mock.entity.AtividadeMock;
+import br.edu.ufra.novo.ebi.mock.dto.response.AtividadeResponseMock;
 import br.edu.ufra.novo.ebi.mapper.IBaseMapper;
 import br.edu.ufra.novo.ebi.repository.IAtividadeRepository;
 import br.edu.ufra.novo.ebi.service.base.validator.IValidarExistenciaService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AtividadePorTipoServiceImplTest {
@@ -33,17 +32,34 @@ class AtividadePorTipoServiceImplTest {
     @Mock
     private IBaseMapper<Atividade, AtividadeRequest, AtividadeResponse> mapper;
 
-    @BeforeEach
-    void setup() {
-        MockitoAnnotations.openMocks(this);
+    @Test
+    void dadoUmTipoAtividadeExistenteQuandoFiltrarEntaoDeveRetornarListaDeAtividades() {
+        Integer idTipoAtividadeExistente = 1;
+        List<Atividade> atividades = AtividadeMock.recuperarAtividadesPorTipo();
+        List<AtividadeResponse> atividadesMapper = AtividadeResponseMock.recuperarAtividadesPorTipo();
+
+        when(atividadeRepository.filtrarAtividadesPorTipo(idTipoAtividadeExistente)).thenReturn(atividades);
+        doNothing().when(validarExistenciaService).validar(idTipoAtividadeExistente);
+        when(mapper.toList(atividades)).thenReturn(atividadesMapper);
+
+        List<AtividadeResponse> resposta = atividadePorTipoService.filtrarAtividadesPorTipo(idTipoAtividadeExistente);
+
+        assertNotNull(resposta);
+        assertFalse(resposta.isEmpty());
     }
 
     @Test
-    void dadoUmTipoAtividadeExistenteQuandoFiltrarEntaoDeveRetornarListaDeAtividades() {
-        Integer idTipoAtividade = 1;
-        List<AtividadeResponse> atividades = atividadePorTipoService.filtrarAtividadesPorTipo(idTipoAtividade);
-        assertNotNull(atividades);
+    void dadoUmTipoAtividadeNaoExistenteQuandoFiltrarEntaoDeveLancarException() {
+        Integer idTipoAtividadeNaoExistente = 0;
+
+        doThrow(new EntidadeNaoEncontradaException(String.format("Entidade com ID %d não encontrada", idTipoAtividadeNaoExistente)))
+                .when(validarExistenciaService)
+                .validar(idTipoAtividadeNaoExistente);
+
+        assertThrows(EntidadeNaoEncontradaException.class, () -> atividadePorTipoService.filtrarAtividadesPorTipo(idTipoAtividadeNaoExistente));
+
+        verify(validarExistenciaService).validar(idTipoAtividadeNaoExistente);
+        verify(atividadeRepository, never()).filtrarAtividadesPorTipo(idTipoAtividadeNaoExistente);
+        verify(mapper, never()).toList(any());
     }
-
-
 }

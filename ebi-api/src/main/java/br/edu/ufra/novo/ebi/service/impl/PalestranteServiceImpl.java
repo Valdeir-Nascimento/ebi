@@ -19,7 +19,7 @@ public class PalestranteServiceImpl implements IPalestranteService {
     private final IBaseMapper<Autor, AutorRequest, AutorResponse> mapper;
 
     @Override
-    public List<AutorResponse> obterPalestrantes() {
+    public List<AutorResponse> filtrarPalestrantes() {
         List<Autor> palestrantes = autorRepository.obterPalestrantes();
         return mapper.toList(palestrantes);
     }
