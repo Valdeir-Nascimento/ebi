@@ -18,44 +18,44 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AutorServiceImpl implements IBaseService<AutorRequest, AutorResponse> {
 
-    private final IAutorRepository AutorRepository;
+    private final IAutorRepository autorRepository;
     private final IBaseMapper<Autor, AutorRequest, AutorResponse> mapper;
     private final IPropertyCopier<AutorRequest, Autor> propertyCopier;
 
     @Override
     public List<AutorResponse> listarTodos() {
-        List<Autor> Autors = AutorRepository.findAll();
-        return mapper.toList(Autors);
+        List<Autor> autores = autorRepository.findAll();
+        return mapper.toList(autores);
     }
 
     @Override
     public AutorResponse buscarPorId(Integer id) {
-        Autor Autor = AutorRepository.findById(id)
+        Autor autor = autorRepository.findById(id)
                 .orElseThrow(() -> new AutorNaoEncontradoException(id));
-        return mapper.toResponse(Autor);
+        return mapper.toResponse(autor);
     }
 
     @Override
     public AutorResponse cadastrar(AutorRequest request) {
-        Autor Autor = mapper.toEntity(request);
-        Autor = AutorRepository.save(Autor);
-        return mapper.toResponse(Autor);
+        Autor autor = mapper.toEntity(request);
+        autor = autorRepository.save(autor);
+        return mapper.toResponse(autor);
     }
 
     @Override
     public AutorResponse editar(Integer id, AutorRequest request) {
         AutorResponse response = buscarPorId(id);
-        Autor Autor = mapper.responseToEntity(response);
-        propertyCopier.copyProperties(request, Autor);
-        Autor = AutorRepository.save(Autor);
-        return mapper.toResponse(Autor);
+        Autor autor = mapper.responseToEntity(response);
+        propertyCopier.copyProperties(request, autor);
+        autor = autorRepository.save(autor);
+        return mapper.toResponse(autor);
     }
 
     @Override
     public void excluir(Integer id) {
         try {
-            AutorRepository.deleteById(id);
-            AutorRepository.flush();
+            autorRepository.deleteById(id);
+            autorRepository.flush();
         } catch (EmptyResultDataAccessException e) {
             throw new AutorNaoEncontradoException(id);
         }
