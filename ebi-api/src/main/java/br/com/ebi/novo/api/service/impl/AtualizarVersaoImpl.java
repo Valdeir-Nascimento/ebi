@@ -2,7 +2,6 @@ package br.com.ebi.novo.api.service.impl;
 
 import br.com.ebi.novo.api.dto.response.VersaoResponse;
 import br.com.ebi.novo.api.entity.Versao;
-import br.com.ebi.novo.api.mapper.IBaseMapper;
 import br.com.ebi.novo.api.repository.IVersaoRepository;
 import br.com.ebi.novo.api.service.IAtualizarVersao;
 import br.com.ebi.novo.api.util.DataUtil;

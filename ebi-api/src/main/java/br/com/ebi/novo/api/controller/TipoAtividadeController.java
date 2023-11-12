@@ -19,7 +19,7 @@ public class TipoAtividadeController {
     private final IBaseService<TipoAtividadeRequest, TipoAtividadeResponse> tipoAtividadeService;
 
     @GetMapping
-    public ResponseEntity<List<TipoAtividadeResponse>> listarToodos() {
+    public ResponseEntity<List<TipoAtividadeResponse>> listarTodos() {
         List<TipoAtividadeResponse> atividades = tipoAtividadeService.listarTodos();
         return ResponseEntity.ok().body(atividades);
     }
