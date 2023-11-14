@@ -1,5 +1,6 @@
 package br.com.ebi.novo.api.controller;
 
+import br.com.ebi.novo.api.controller.openapi.PalestranteControllerOpenApi;
 import br.com.ebi.novo.api.service.IPalestranteService;
 import br.com.ebi.novo.api.dto.response.AutorResponse;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/api/v1/palestrantes")
-public class PalestranteController {
+public class PalestranteController implements PalestranteControllerOpenApi {
 
     private final IPalestranteService palestranteService;
 

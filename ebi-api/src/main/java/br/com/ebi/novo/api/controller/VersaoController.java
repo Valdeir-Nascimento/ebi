@@ -1,5 +1,6 @@
 package br.com.ebi.novo.api.controller;
 
+import br.com.ebi.novo.api.controller.openapi.VersaoControllerOpenApi;
 import br.com.ebi.novo.api.service.IUltimaVersaoService;
 import br.com.ebi.novo.api.dto.response.UltimaVersaoResponse;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/versoes")
-public class VersaoController {
+public class VersaoController implements VersaoControllerOpenApi {
 
     private final IUltimaVersaoService ultimaVersaoService;
 

@@ -1,5 +1,6 @@
 package br.com.ebi.novo.api.controller;
 
+import br.com.ebi.novo.api.controller.openapi.AutorControllerOpenApi;
 import br.com.ebi.novo.api.dto.request.AutorRequest;
 import br.com.ebi.novo.api.dto.response.AutorResponse;
 import br.com.ebi.novo.api.service.base.IBaseService;
@@ -14,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/api/v1/autores")
-public class AutorController {
+public class AutorController implements AutorControllerOpenApi {
     
     private final IBaseService<AutorRequest, AutorResponse> autorService;
 

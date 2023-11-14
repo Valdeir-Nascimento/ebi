@@ -1,5 +1,6 @@
 package br.com.ebi.novo.api.controller;
 
+import br.com.ebi.novo.api.controller.openapi.FinanciadorControllerOpenApi;
 import br.com.ebi.novo.api.dto.request.FinanciadorRequest;
 import br.com.ebi.novo.api.dto.response.FinanciadorResponse;
 import br.com.ebi.novo.api.service.base.IBaseService;
@@ -14,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/api/v1/financiadores")
-public class FinanciadorController {
+public class FinanciadorController implements FinanciadorControllerOpenApi {
     
     private final IBaseService<FinanciadorRequest, FinanciadorResponse> financiadorService;
 

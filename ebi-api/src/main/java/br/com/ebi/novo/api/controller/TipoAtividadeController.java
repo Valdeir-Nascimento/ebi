@@ -1,5 +1,6 @@
 package br.com.ebi.novo.api.controller;
 
+import br.com.ebi.novo.api.controller.openapi.TipoAtividadeControllerOpenApi;
 import br.com.ebi.novo.api.dto.request.TipoAtividadeRequest;
 import br.com.ebi.novo.api.dto.response.TipoAtividadeResponse;
 import br.com.ebi.novo.api.service.base.IBaseService;
@@ -14,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/api/v1/tipo-atividade")
-public class TipoAtividadeController {
+public class TipoAtividadeController implements TipoAtividadeControllerOpenApi {
 
     private final IBaseService<TipoAtividadeRequest, TipoAtividadeResponse> tipoAtividadeService;
 

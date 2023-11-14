@@ -1,5 +1,6 @@
 package br.com.ebi.novo.api.controller;
 
+import br.com.ebi.novo.api.controller.openapi.AtividadeControllerOpenApi;
 import br.com.ebi.novo.api.dto.request.AtividadeRequest;
 import br.com.ebi.novo.api.dto.response.AtividadeResponse;
 import br.com.ebi.novo.api.service.base.IBaseService;
@@ -14,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/api/v1/atividades")
-public class AtividadeController {
+public class AtividadeController implements AtividadeControllerOpenApi {
 
     private final IBaseService<AtividadeRequest, AtividadeResponse> atividadeService;
 
@@ -47,6 +48,4 @@ public class AtividadeController {
         atividadeService.excluir(idAtividade);
         return ResponseEntity.noContent().build();
     }
-
-
 }

@@ -1,5 +1,6 @@
 package br.com.ebi.novo.api.controller;
 
+import br.com.ebi.novo.api.controller.openapi.AtividadePorTipoControllerOpenApi;
 import br.com.ebi.novo.api.dto.response.AtividadeResponse;
 import br.com.ebi.novo.api.service.IAtividadePorTipoService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/api/v1/tipo-atividade")
-public class AtividadePorTipoController {
+public class AtividadePorTipoController implements AtividadePorTipoControllerOpenApi {
 
     private final IAtividadePorTipoService atividadePorTipoService;
 
