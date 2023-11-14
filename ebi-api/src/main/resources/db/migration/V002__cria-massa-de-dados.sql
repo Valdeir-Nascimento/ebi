@@ -43,3 +43,37 @@ INSERT INTO trabalho_autor (trabalho_id, autor_id) VALUES
     (5,6),
     (6,1),
     (6,7);
+    
+INSERT INTO permissao (id, nome, descricao) VALUES
+    (1, 'EDITAR_TIPO_ATVIDADE', 'Permite editar tipo de atividade'),
+    (2, 'EDITAR_ATIVIDADE', 'Permite criar ou editar atvidades'),
+    (3, 'EDITAR_TRABALHO', 'Permite criar ou editar trabalhos'),
+    (4, 'EDITAR_FINANCIADOR', 'Permite criar ou editar financidores'),
+    (5, 'CONSULTAR_TIPO_ATIVIDADE', 'Permite consultar usuários, grupos e permissões'),
+    (6, 'EDITAR_USUARIOS_GRUPOS_PERMISSOES', 'Permite criar ou editar usuários, grupos e permissões'),
+    (7, 'EDITAR_AUTORES', 'Permite criar, editar ou gerenciar autores'),
+    (8, 'CONSULTAR_ATIVIDADE', 'Permite consultar atividades'),
+    (9, 'GERENCIAR_ATIVIDADE', 'Permite gerenciar atividades');
+
+INSERT INTO grupo (id, nome) VALUES (1, 'Gerente'), (2, 'Secretária'), (3, 'Cadastrador');
+
+INSERT INTO usuario_grupo (usuario_id, grupo_id) VALUES (1, 1), (1, 2), (2, 2), (3, 3);
+
+-- Adiciona todas AS permissoes no grupo do gerente
+INSERT INTO grupo_permissao (grupo_id, permissao_id)
+SELECT 1, id FROM permissao;
+
+-- Adiciona permissoes no grupo do vendedor
+INSERT INTO grupo_permissao (grupo_id, permissao_id)
+SELECT 2, id FROM permissao WHERE nome LIKE 'CONSULTAR_%';
+
+INSERT INTO grupo_permissao (grupo_id, permissao_id)
+SELECT 2, id FROM permissao WHERE nome = 'EDITAR_ATIVIDADE';
+
+-- Adiciona permissoes no grupo do auxiliar
+INSERT INTO grupo_permissao (grupo_id, permissao_id)
+SELECT 3, id FROM permissao WHERE nome LIKE 'CONSULTAR_%';
+
+-- Adiciona permissoes no grupo cadastrador
+INSERT INTO grupo_permissao (grupo_id, permissao_id)
+SELECT 3, id FROM permissao WHERE nome LIKE '%_TIPO';

@@ -89,6 +89,32 @@ CREATE TABLE usuario
     senha   VARCHAR(150) NOT NULL
 );
 
+CREATE TABLE permissao
+(
+    id        BIGINT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    descricao VARCHAR(60) NOT NULL,
+    nome      VARCHAR(60) NOT NULL
+);
+
+CREATE TABLE grupo
+(
+    id   BIGINT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(60) NOT NULL
+);
+
+CREATE TABLE grupo_permissao
+(
+    grupo_id     BIGINT NOT NULL,
+    permissao_id BIGINT NOT NULL,
+    PRIMARY KEY (grupo_id, permissao_id)
+);
+
+CREATE TABLE usuario_grupo
+(
+    grupo_id   BIGINT NOT NULL,
+    usuario_id BIGINT NOT NULL,
+    PRIMARY KEY (grupo_id, usuario_id)
+);
 
 ALTER TABLE patrocinador
     ADD CONSTRAINT fk_patrociandor__categoria_patrocinador__id
@@ -138,3 +164,19 @@ ALTER TABLE financiador_trabalho
         FOREIGN KEY (trabalho_id) REFERENCES trabalho (id)
             ON DELETE CASCADE
             ON UPDATE CASCADE;
+
+ALTER TABLE grupo_permissao
+    ADD CONSTRAINT fk_grupo_permissao__permissao__id
+        FOREIGN KEY (permissao_id) REFERENCES permissao (id);
+
+ALTER TABLE grupo_permissao
+    ADD CONSTRAINT fk_grupo_permissao__grupo__id
+        FOREIGN KEY (grupo_id) REFERENCES grupo (id);
+
+ALTER TABLE usuario_grupo
+    ADD CONSTRAINT fk_usuario_grupo__grupo__id
+        foreign key (grupo_id) REFERENCES grupo (id);
+
+ALTER TABLE usuario_grupo
+    ADD CONSTRAINT fk_usuario_grupo__usuario__id
+        FOREIGN KEY (usuario_id) REFERENCES usuario (id);
