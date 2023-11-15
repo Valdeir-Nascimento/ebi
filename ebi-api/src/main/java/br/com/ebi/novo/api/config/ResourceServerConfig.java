@@ -1,4 +1,4 @@
-package br.com.ebi.novo.api.security;
+package br.com.ebi.novo.api.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
