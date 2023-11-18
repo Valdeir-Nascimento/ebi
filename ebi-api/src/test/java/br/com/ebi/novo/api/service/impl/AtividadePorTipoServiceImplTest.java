@@ -2,18 +2,17 @@ package br.com.ebi.novo.api.service.impl;
 
 import br.com.ebi.novo.api.dto.request.AtividadeRequest;
 import br.com.ebi.novo.api.dto.response.AtividadeResponse;
+import br.com.ebi.novo.api.entity.Atividade;
 import br.com.ebi.novo.api.exception.EntidadeNaoEncontradaException;
 import br.com.ebi.novo.api.mapper.IBaseMapper;
 import br.com.ebi.novo.api.mock.dto.response.AtividadeResponseMock;
 import br.com.ebi.novo.api.mock.entity.AtividadeMock;
-import br.com.ebi.novo.api.service.base.validator.IValidarExistenciaService;
-import br.com.ebi.novo.api.entity.Atividade;
 import br.com.ebi.novo.api.repository.IAtividadeRepository;
+import br.com.ebi.novo.api.service.base.validator.IValidarExistenciaService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
@@ -53,7 +52,7 @@ class AtividadePorTipoServiceImplTest {
     void dadoUmTipoAtividadeNaoExistenteQuandoFiltrarEntaoDeveLancarException() {
         Integer idTipoAtividadeNaoExistente = 0;
 
-        Mockito.doThrow(new EntidadeNaoEncontradaException(String.format("Entidade com ID %d não encontrada", idTipoAtividadeNaoExistente)))
+        doThrow(new EntidadeNaoEncontradaException(String.format("Entidade com ID %d não encontrada", idTipoAtividadeNaoExistente)))
                 .when(validarExistenciaService)
                 .validar(idTipoAtividadeNaoExistente);
 
