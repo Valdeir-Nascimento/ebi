@@ -54,7 +54,8 @@ public class AuthorizationServerConfig {
 
     @Bean
     public RegisteredClientRepository registeredClientRepository(PasswordEncoder encoder) {
-        RegisteredClient client = RegisteredClient.withId("1")
+        RegisteredClient client = RegisteredClient
+                .withId("1")
                 .clientId("ebi-backend")
                 .clientSecret(encoder.encode("backend123"))
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
@@ -66,28 +67,31 @@ public class AuthorizationServerConfig {
                         .build())
                 .build();
 
-        RegisteredClient ebiWeb = RegisteredClient.withId("2")
-                .clientId("2")
-                .clientSecret("ebi-web")
+        RegisteredClient ebiWeb = RegisteredClient
+                .withId("2")
+                .clientId("ebi-web")
                 .clientSecret(encoder.encode("web123"))
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+                .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
                 .scope("READ")
                 .scope("WRITE")
                 .tokenSettings(TokenSettings.builder()
                         .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED)
                         .accessTokenTimeToLive(Duration.ofMinutes(15))
+                        .reuseRefreshTokens(false)
+                        .refreshTokenTimeToLive(Duration.ofDays(1))
                         .build())
-                .redirectUri("http://localhost:8080/authorized")
-                .redirectUri("http://localhost:8080/swagger-ui/oauth2-redirect.html")
+                .redirectUri("http://127.0.0.1:8080/authorized")
+                .redirectUri("http://127.0.0.1:8080/swagger-ui/oauth2-redirect.html")
                 .clientSettings(ClientSettings.builder()
                         .requireAuthorizationConsent(true)
                         .build())
                 .build();
 
-        RegisteredClient foodanalytics = RegisteredClient.withId("3")
-                .clientId("3")
-                .clientSecret("foodanalytics")
+        RegisteredClient foodanalytics = RegisteredClient
+                .withId("3")
+                .clientId("foodanalytics")
                 .clientSecret(encoder.encode("web123"))
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
