@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Setter
@@ -49,5 +51,10 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "senha", nullable = false)
     private String senha;
+
+    @ManyToMany
+    @JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "grupo_id"))
+    private Set<Grupo> grupos;
 
 }
